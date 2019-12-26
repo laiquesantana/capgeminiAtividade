@@ -15,11 +15,10 @@ class FuncionarioController extends Controller
      */
     public function listBrazilEmployees()
     {
-        $funcionarios = file_get_contents('funcionarios.json');
-        
-        // Decode JSON format and return an object
-        $json = json_decode($funcionarios);
+        $json = json_decode(file_get_contents(public_path('funcionarios.json')));
 
+
+        
         $filtered = Arr::where($json, function ($value, $key) {
             return $value->pais == 'Brasil';
         });
